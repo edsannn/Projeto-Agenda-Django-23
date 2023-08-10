@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 from . import models
 
@@ -77,5 +77,7 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             self.add_error(
                 'email',
-                ValidationError('Ja existe este e-mail', code='invalid')
+                ValidationError('Já existe este e-mail', code='invalid')
             )
+
+        return email
